@@ -67,6 +67,9 @@ export const App: React.FC = () => {
     }
   }, [filterByStatus, todoList]);
 
+  const isAllCompleted =
+    todoList.length > 0 && todoList.every(todo => todo.completed);
+
   const activeTodosCount = React.useMemo(() => {
     return todoList.filter(todo => !todo.completed).length;
   }, [todoList]);
@@ -80,7 +83,7 @@ export const App: React.FC = () => {
       <h1 className="todoapp__title">todos</h1>
 
       <div className="todoapp__content">
-        <Header />
+        <Header isAllCompleted={isAllCompleted} />
 
         <TodoList todos={filteredTodosList} />
 
